@@ -1,0 +1,186 @@
+!DOCTYPE html>
+<html lang="zh-TW" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的個人首頁</title>
+    <!-- 引入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563EB; /* 藍色 */
+            --accent-color: #8B5CF6; /* 紫色 */
+            --bg-color: #0c0a09; /* 接近黑的深灰色 */
+            --text-color: #f5f5f5; /* 淺灰色 */
+            --card-bg: #1C1917; /* 深灰色 */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden; /* 防止水平滾動 */
+        }
+
+        /* 動態背景效果 */
+        .dynamic-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            overflow: hidden;
+        }
+
+        .dynamic-bg .line {
+            position: absolute;
+            bottom: -50px;
+            width: 2px;
+            background-color: rgba(139, 92, 246, 0.2);
+            animation: moveUp linear infinite;
+        }
+
+        @keyframes moveUp {
+            from {
+                transform: translateY(0) scaleY(0.2);
+                opacity: 0.8;
+            }
+            to {
+                transform: translateY(-100vh) scaleY(1);
+                opacity: 0;
+            }
+        }
+
+        /* 卡片與按鈕的過渡效果 */
+        .card, .link-btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .link-btn:hover {
+            transform: translateY(-2px);
+            background-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-stone-950 text-stone-50 min-h-screen">
+    
+    <!-- 動態背景容器 -->
+    <div class="dynamic-bg"></div>
+
+    <main class="container mx-auto px-4 py-8 max-w-2xl">
+        <!-- 個人檔案與簡介區塊 -->
+        <header class="flex flex-col items-center text-center mb-12">
+            <!-- 頭像 -->
+            <img class="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-stone-700 shadow-xl mb-4" 
+                 src="https://placehold.co/128x128/333/FFF?text=你的照片" 
+                 alt="個人頭像">
+            
+            <!-- 姓名與標語 -->
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-2">你的名字</h1>
+            <p class="text-lg md:text-xl font-medium text-stone-400">
+                用程式碼解鎖金融市場的無限可能
+            </p>
+        </header>
+
+        <!-- 連結按鈕區塊 (Linktree 核心) -->
+        <section class="space-y-4 mb-12">
+            <h2 class="text-xl md:text-2xl font-semibold mb-6 text-center text-white">我的連結</h2>
+            <a href="#" class="block">
+                <div class="link-btn w-full bg-stone-800 text-white py-4 px-6 rounded-xl shadow-lg hover:bg-stone-700 hover:shadow-xl transition-transform transform">
+                    <span class="text-lg font-medium">我的 GitHub</span>
+                    <p class="text-sm text-stone-400 mt-1">追蹤我的程式碼與專案</p>
+                </div>
+            </a>
+            <a href="#" class="block">
+                <div class="link-btn w-full bg-stone-800 text-white py-4 px-6 rounded-xl shadow-lg hover:bg-stone-700 hover:shadow-xl transition-transform transform">
+                    <span class="text-lg font-medium">我的量化交易部落格</span>
+                    <p class="text-sm text-stone-400 mt-1">分享我的交易策略與研究</p>
+                </div>
+            </a>
+            <a href="#" class="block">
+                <div class="link-btn w-full bg-stone-800 text-white py-4 px-6 rounded-xl shadow-lg hover:bg-stone-700 hover:shadow-xl transition-transform transform">
+                    <span class="text-lg font-medium">關於我的 LinkedIn</span>
+                    <p class="text-sm text-stone-400 mt-1">建立專業人脈，歡迎交流</p>
+                </div>
+            </a>
+            <a href="mailto:your_email@example.com" class="block">
+                <div class="link-btn w-full bg-stone-800 text-white py-4 px-6 rounded-xl shadow-lg hover:bg-stone-700 hover:shadow-xl transition-transform transform">
+                    <span class="text-lg font-medium">聯絡我</span>
+                    <p class="text-sm text-stone-400 mt-1">發送電子郵件</p>
+                </div>
+            </a>
+        </section>
+
+        <!-- 技能區塊 -->
+        <section class="mb-12">
+            <h2 class="text-xl md:text-2xl font-semibold mb-6 text-center text-white">我的核心技能</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="card bg-stone-800 rounded-xl p-4 text-center shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <p class="font-bold text-lg md:text-xl text-yellow-300">Python</p>
+                    <p class="text-sm text-stone-400 mt-1">程式語言</p>
+                </div>
+                <div class="card bg-stone-800 rounded-xl p-4 text-center shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <p class="font-bold text-lg md:text-xl text-blue-400">Pandas</p>
+                    <p class="text-sm text-stone-400 mt-1">資料處理</p>
+                </div>
+                <div class="card bg-stone-800 rounded-xl p-4 text-center shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <p class="font-bold text-lg md:text-xl text-red-400">Selenium</p>
+                    <p class="text-sm text-stone-400 mt-1">網頁自動化</p>
+                </div>
+                <div class="card bg-stone-800 rounded-xl p-4 text-center shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <p class="font-bold text-lg md:text-xl text-green-400">API 串接</p>
+                    <p class="text-sm text-stone-400 mt-1">數據整合</p>
+                </div>
+                <div class="card bg-stone-800 rounded-xl p-4 text-center shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <p class="font-bold text-lg md:text-xl text-purple-400">量化交易</p>
+                    <p class="text-sm text-stone-400 mt-1">策略開發</p>
+                </div>
+                <div class="card bg-stone-800 rounded-xl p-4 text-center shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <p class="font-bold text-lg md:text-xl text-cyan-400">數據分析</p>
+                    <p class="text-sm text-stone-400 mt-1">洞察市場</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 頁腳 -->
+        <footer class="text-center text-stone-500 text-sm mt-12">
+            <p>2024 © 由你的名字設計與開發。所有權利保留。</p>
+        </footer>
+    </main>
+
+    <script>
+        // JavaScript 實現動態背景線條
+        const bg = document.querySelector('.dynamic-bg');
+        const numLines = 50;
+
+        function createLine() {
+            const line = document.createElement('div');
+            line.classList.add('line');
+            line.style.left = `${Math.random() * 100}vw`;
+            line.style.height = `${Math.random() * 200 + 50}px`;
+            line.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            line.style.animationDelay = `-${Math.random() * 5}s`;
+            bg.appendChild(line);
+
+            // 清理已離開視窗的線條
+            line.addEventListener('animationend', () => {
+                line.remove();
+                createLine(); // 創建新的線條以保持動態
+            });
+        }
+
+        for (let i = 0; i < numLines; i++) {
+            createLine();
+        }
+    </script>
+</body>
+</html>
